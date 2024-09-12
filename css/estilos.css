@@ -1,0 +1,127 @@
+/* Definições Globais */
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f8ff; /* Fundo suave */
+    color: #333; /* Texto primário */
+}
+
+h1, h2, h3 {
+    color: #1e90ff; /* Azul forte para títulos */
+}
+
+a {
+    text-decoration: none;
+    color: #ff5733; /* Links com cor vibrante */
+}
+
+/* Estilo para o Cabeçalho */
+.header-principal {
+    background-color: #ff6f61; /* Cor chamativa */
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+nav ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+nav ul li {
+    display: inline;
+    margin-right: 15px;
+}
+
+nav ul li a {
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+/* Seção de Conteúdo */
+main {
+    padding: 30px;
+}
+
+.sobre-nos {
+    background-color: #ff5733; /* Cor chamativa para contraste */
+    padding: 20px;
+    border-radius: 8px;
+    color: white;
+}
+
+.novidades {
+    margin-top: 30px;
+}
+
+.card {
+    background-color: #1e90ff; /* Destaques em azul */
+    color: white;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+}
+
+/* Rodapé */
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 10px;
+}
+
+/* Botões */
+button {
+    background-color: #ff5733;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #c70039;
+}
+.galeria {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+.galeria div {
+    position: relative;
+}
+
+.galeria img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+
+.galeria div:hover {
+    transform: scale(1.05);
+}
+
+button.excluir {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: red;
+    color: white;
+    border: none;
+    padding: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.video-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px auto;
+    max-width: 80%;
+}
