@@ -1,44 +1,47 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chat com Desenvolvedores - Meu Site</title>
-    <link rel="stylesheet" href="css/estilos.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chat App</title>
+  <style>
+    body { font-family: Arial, sans-serif; }
+    #messages { border: 1px solid #ccc; padding: 10px; height: 300px; overflow-y: scroll; }
+    #form { display: flex; }
+    #input { flex: 1; padding: 10px; }
+    #submit { padding: 10px; }
+  </style>
 </head>
 <body>
-    <header>
-        <h1>Chat com os Desenvolvedores</h1>
-        <nav>
-            <ul>
-                <li><a href="index.html">Início</a></li>
-                <li><a href="cadastro.html">Cadastro</a></li>
-                <li><a href="galeria.html">Galeria de Fotos</a></li>
-                <li><a href="chat.html">Chat com Desenvolvedores</a></li>
-            </ul>
-        </nav>
-    </header>
+  <h1>Chat App</h1>
+  <div id="messages"></div>
+  <form id="form" action="">
+    <input id="input" autocomplete="off" placeholder="Type a message" />
+    <button id="submit">Send</button>
+  </form>
+  
+  <script src="/socket.io/socket.io.js"></script>
+  <script>
+    const socket = io();
 
-    <main>
-        <p>Estamos disponíveis para responder suas dúvidas em tempo real. Clique no ícone de chat no canto inferior direito para iniciar a conversa!</p>
-    </main>
+    const form = document.getElementById('form');
+    const input = document.getElementById('input');
+    const messages = document.getElementById('messages');
 
-    <footer>
-        <p>&copy; 2024 Meu Site. Todos os direitos reservados.</p>
-    </footer>
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      if (input.value) {
+        socket.emit('chat message', input.value);
+        input.value = '';
+      }
+    });
 
- <!--Start of Tawk.to Script-->
-<script type="text/javascript">
-    var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
-    (function(){
-    var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
-    s1.async=true;
-    s1.src='https://embed.tawk.to/66e3845c50c10f7a00a91542/1i7kbq2pd';
-    s1.charset='UTF-8';
-    s1.setAttribute('crossorigin','*');
-    s0.parentNode.insertBefore(s1,s0);
-    })();
-    </script>
-    <!--End of Tawk.to Script-->
+    socket.on('chat message', (msg) => {
+      const item = document.createElement('div');
+      item.textContent = msg;
+      messages.appendChild(item);
+      messages.scrollTop = messages.scrollHeight;
+    });
+  </script>
 </body>
 </html>
