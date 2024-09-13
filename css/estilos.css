@@ -1,27 +1,32 @@
 /* Definições Globais */
 body {
-    font-family: 'Arial', sans-serif;
+    font-family: 'Georgia', serif; /* Tipografia com um toque mais natural */
     margin: 0;
     padding: 0;
-    background-color: #f0f8ff; /* Fundo suave */
-    color: #333; /* Texto primário */
+    background-color: #2e3b2e; /* Fundo verde escuro, representando uma floresta densa */
+    color: #dcdcdc; /* Texto primário em um cinza claro para contraste suave */
 }
 
 h1, h2, h3 {
-    color: #1e90ff; /* Azul forte para títulos */
+    color: #8f9779; /* Verde oliva suave para títulos */
 }
 
 a {
     text-decoration: none;
-    color: #ff5733; /* Links com cor vibrante */
+    color: #b8860b; /* Tons dourados para os links, como raios de sol entre as árvores */
+}
+
+a:hover {
+    color: #dda15e; /* Um tom quente e suave para destaque ao passar o mouse */
 }
 
 /* Estilo para o Cabeçalho */
 .header-principal {
-    background-color: #ff6f61; /* Cor chamativa */
-    color: white;
+    background-color: #3b3a30; /* Marrom sóbrio, inspirado na casca das árvores */
+    color: #dcdcdc; /* Texto claro para legibilidade */
     padding: 20px;
     text-align: center;
+    border-bottom: 2px solid #556b2f; /* Delimitar com uma linha verde musgo */
 }
 
 nav ul {
@@ -35,7 +40,7 @@ nav ul li {
 }
 
 nav ul li a {
-    color: white;
+    color: #dcdcdc;
     font-weight: bold;
     font-size: 18px;
 }
@@ -46,10 +51,11 @@ main {
 }
 
 .sobre-nos {
-    background-color: #ff5733; /* Cor chamativa para contraste */
+    background-color: #556b2f; /* Verde musgo, trazendo a sensação de natureza */
     padding: 20px;
     border-radius: 8px;
-    color: white;
+    color: #f5f5f5; /* Branco suave para o texto */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra leve para dar profundidade */
 }
 
 .novidades {
@@ -57,24 +63,26 @@ main {
 }
 
 .card {
-    background-color: #1e90ff; /* Destaques em azul */
+    background-color: #4b5320; /* Tom de verde escuro, mantendo o ambiente sóbrio */
     color: white;
     padding: 20px;
     margin-bottom: 20px;
     border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
 
 /* Rodapé */
 footer {
-    background-color: #333;
-    color: white;
+    background-color: #3b3a30; /* Seguindo o tom sóbrio do cabeçalho */
+    color: #dcdcdc;
     text-align: center;
     padding: 10px;
+    border-top: 2px solid #556b2f;
 }
 
 /* Botões */
 button {
-    background-color: #ff5733;
+    background-color: #8f9779; /* Verde oliva suave para os botões */
     color: white;
     padding: 10px 20px;
     border: none;
@@ -85,8 +93,22 @@ button {
 }
 
 button:hover {
-    background-color: #c70039;
+    background-color: #6b8e23; /* Um verde mais vibrante ao passar o mouse */
 }
+
+button.excluir {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: #8b0000; /* Vermelho escuro para o botão de exclusão */
+    color: white;
+    border: none;
+    padding: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* Galeria */
 .galeria {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -95,33 +117,28 @@ button:hover {
 
 .galeria div {
     position: relative;
+    transition: transform 0.2s ease-in-out;
 }
 
 .galeria img {
     width: 100%;
     height: auto;
     border-radius: 8px;
+    border: 2px solid #556b2f; /* Bordas verde musgo para reforçar o estilo de floresta */
 }
 
 .galeria div:hover {
     transform: scale(1.05);
 }
 
-button.excluir {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    background-color: red;
-    color: white;
-    border: none;
-    padding: 5px;
-    border-radius: 5px;
-    cursor: pointer;
-}
+/* Video Container */
 .video-container {
     display: flex;
     justify-content: center;
     align-items: center;
     margin: 20px auto;
     max-width: 80%;
+    background-color: #3b3a30; /* Fundo escuro para os vídeos */
+    padding: 20px;
+    border-radius: 8px;
 }
