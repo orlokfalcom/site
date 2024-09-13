@@ -1,27 +1,36 @@
-// server.js
-const express = require('express');
-const http = require('http');
-const socketIo = require('socket.io');
+const socket = io();
 
-const app = express();
-const server = http.createServer(app);
-const io = socketIo(server);
+const form = document.getElementById('form');
+const input = document.getElementById('input');
+const messages = document.getElementById('messages');
 
-app.use(express.static('public'));
+// Função para criar e adicionar mensagens ao chat
+const addMessage = (msg) => {
+  const item = document.createElement('div');
+  item.textContent = msg;
+  messages.appendChild(item);
+  messages.scrollTop = messages.scrollHeight;
+};
 
-io.on('connection', (socket) => {
-  console.log('A user connected');
-
-  socket.on('chat message', (msg) => {
-    io.emit('chat message', msg);
-  });
-
-  socket.on('disconnect', () => {
-    console.log('User disconnected');
-  });
+// Enviar mensagem ao servidor quando o formulário for submetido
+form.addEventListener('submit', (e) => {
+  e.preventDefault();
+  if (input.value) {
+    socket.emit('chat message', input.value);
+    input.value = '';
+  }
 });
 
-const PORT = process.env.PORT || 3000;
-server.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
+// Receber e exibir mensagem do servidor
+socket.on('chat message', (msg) => {
+  addMessage(msg);
+});
+
+// Notificar quando um usuário se conecta ou desconecta
+socket.on('connect', () => {
+  addMessage('You are connected to the chat.');
+});
+
+socket.on('disconnect', () => {
+  addMessage('You have been disconnected from the chat.');
 });
