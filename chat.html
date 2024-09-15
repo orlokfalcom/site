@@ -3,45 +3,88 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/estilo_chat.css">
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous">
+  
+  <!-- Preconnect and preload for performance improvement -->
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" as="script">
+  <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js" as="script">
+  
   <title>Chat App</title>
-  <style>
-    body { font-family: Arial, sans-serif; }
-    #messages { border: 1px solid #ccc; padding: 10px; height: 300px; overflow-y: scroll; }
-    #form { display: flex; }
-    #input { flex: 1; padding: 10px; }
-    #submit { padding: 10px; }
-  </style>
 </head>
 <body>
-  <h1>Chat App</h1>
-  <div id="messages"></div>
-  <form id="form" action="">
-    <input id="input" autocomplete="off" placeholder="Type a message" />
-    <button id="submit">Send</button>
-  </form>
+  <header class="header-principal">
+    <h1>Cadastro</h1>
+    <nav>
+      <ul>
+        <li><a href="index.html">Início</a></li>
+        <li><a href="cadastro.html">Cadastro</a></li>
+        <li><a href="galeria.html">Galeria</a></li>
+        <li><a href="chat.html">Chat</a></li>
+      </ul>
+    </nav>
+  </header>
+  <div class="container">
+    <section id="chat-area">
+      <div>
+        <i id="toggleInfo" class="fal fa-info-circle" onclick="handleToggleLeftBar()" aria-label="Toggle chat information"></i>
+        <div id="messages" class="messages">
+          <div id="initialMessage"></div>
+        </div>
+      </div>
+      <div id="send-messages">
+        <input 
+          type="text" 
+          id="input-message" 
+          name="message" 
+          autocomplete="off" 
+          autofocus 
+          onkeypress="
+            if (event.key === 'Enter' && !event.shiftKey) {
+              Submit(event);
+              event.preventDefault();
+            }
+          " 
+          aria-label="Type your message here"
+        >
+        <i class="fas fa-paper-plane" onclick="Submit(event)" aria-label="Send message"></i>
+      </div>
+    </section>
+
+    <section id="left-bar">
+      <div>
+        <h2>Informações do chat</h2>
+        <h3 id="online"><i style="color: green;" class="fas fa-circle"></i> 0 Online</h3>
+        <h3 id="messages-received"><i class="fad fa-inbox-in"></i> 0 Mensagens</h3>
+      </div>
+      <div id="credits">
+        <a href="https://github.com/orlokfalcom/site" target="_blank" aria-label="View project on GitHub">
+          <h3><i class="fab fa-github"></i> Ver projeto</h3>
+        </a>
+        <h3>by <a href="https://github.com/orlokfalcom" target="_blank" aria-label="Visit Professor Ronaldo Luiz Coutinho's GitHub">Professor Ronaldo Luiz Coutinho</a></h3>
+      </div>
+      <div id="bars">
+        <i class="fad fa-arrow-left" aria-label="Collapse/Expand sidebar"></i>
+      </div>
+    </section>
+
+    <div id="enter-user">
+      <div class="content">
+        <h1>Ops! Parece que você é novo por aqui...</h1>
+        <p aria-expanded="true">Por favor, digite abaixo o seu nome.</p>
+        <input type="text" id="input-user" autofocus required minlength="4" aria-label="Enter your name">
+        <button onclick="toggleBoxForNewUser('get')">Entrar</button>
+      </div>
+    </div>
+  </div>
   
+  <script src="./js/main.js"></script>
   <script src="/socket.io/socket.io.js"></script>
-  <script>
-    const socket = io();
-
-    const form = document.getElementById('form');
-    const input = document.getElementById('input');
-    const messages = document.getElementById('messages');
-
-    form.addEventListener('submit', (e) => {
-      e.preventDefault();
-      if (input.value) {
-        socket.emit('chat message', input.value);
-        input.value = '';
-      }
-    });
-
-    socket.on('chat message', (msg) => {
-      const item = document.createElement('div');
-      item.textContent = msg;
-      messages.appendChild(item);
-      messages.scrollTop = messages.scrollHeight;
-    });
-  </script>
+  <script src="/js/chat.js"></script>
 </body>
 </html>
