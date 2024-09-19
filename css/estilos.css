@@ -8,7 +8,7 @@ body {
 }
 
 h1, h2, h3 {
-    color: #8f9779; /* Verde oliva suave para títulos */
+    color: #b6bd55; /* Verde oliva suave para títulos */
 }
 
 a {
@@ -108,14 +108,13 @@ button.excluir {
     cursor: pointer;
 }
 
-/* Galeria */
 .galeria {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 20px;
 }
 
-.galeria div {
+.galeria figure {
     position: relative;
     transition: transform 0.2s ease-in-out;
 }
@@ -124,14 +123,22 @@ button.excluir {
     width: 100%;
     height: auto;
     border-radius: 8px;
-    border: 2px solid #556b2f; /* Bordas verde musgo para reforçar o estilo de floresta */
+    border: 2px solid #556b2f;
 }
 
-.galeria div:hover {
+.galeria figure:hover {
     transform: scale(1.05);
 }
 
-/* Video Container */
+.galeria figcaption {
+    text-align: center;
+    font-size: 14px;
+    color: #333; /* Cor do texto da legenda */
+    margin-top: 8px;
+    font-style: italic; /* Estilo itálico para a legenda */
+}
+
+
 .video-container {
     display: flex;
     justify-content: center;
